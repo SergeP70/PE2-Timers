@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:B4.PE2.PilleS"
+             x:Class="B4.PE2.PilleS.MainPage">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+                    iOS="20,40,20,20"
+                    Android="20"
+                    WinPhone="20" />
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <StackLayout Padding="15">
+            <Label x:Name="lblWelcome" Text="Wel'clock to Serge's Timers!"
+                VerticalOptions="Start" FontSize="Large"
+                HorizontalOptions="CenterAndExpand" />
+            <Label x:Name="lblRunning" Text="which OS?"
+                VerticalOptions="Start" FontSize="Micro"
+                HorizontalOptions="CenterAndExpand" />
+            <Label x:Name="lblScreenSize" Text="which Screensize?"
+                VerticalOptions="Start" FontSize="Micro"
+                HorizontalOptions="CenterAndExpand" />
+            <Button x:Name="btnClock" Text="Clock"
+                    Clicked="btnClock_Clicked" />
+            <Button x:Name="btnTimer" Text="Timer"
+                    Clicked="btnTimer_Clicked" />
+            <Button x:Name="btnLapTimer" Text="Lap Timer"
+                    Clicked="btnLapTimer_Clicked" />
+            <Button x:Name="btnFeedback" Text="Feedback"
+                    Clicked="btnFeedback_Clicked" />
+            <Button x:Name="btnAbout" Text="About"
+                    Clicked="btnAbout_Clicked" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
