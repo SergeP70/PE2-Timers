@@ -39,8 +39,8 @@ namespace B4.PE2.PilleS
             {
                 Text = "SPLIT TIME",
                 HorizontalOptions = LayoutOptions.Center,
-                FontSize=Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
-                TextColor=Color.LightSalmon
+                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
+                TextColor = Color.LightSalmon
             };
 
             // create the Start/Stop button and attach Clicked_handler
@@ -48,7 +48,7 @@ namespace B4.PE2.PilleS
             {
                 Text = "Start/Stop",
                 FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
-                HorizontalOptions=LayoutOptions.FillAndExpand
+                HorizontalOptions = LayoutOptions.FillAndExpand
             };
             btnStartStop.Clicked += OnButtonStartStopClicked;
 
@@ -65,14 +65,16 @@ namespace B4.PE2.PilleS
             {
                 Text = "Lap Split",
                 FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
-                HorizontalOptions=LayoutOptions.FillAndExpand
+                HorizontalOptions = LayoutOptions.FillAndExpand
             };
             btnLap.Clicked += OnBtnLapClicked;
 
             // Assemble the page
-            Content = new StackLayout
+            Content = new ScrollView
             {
-                Children = {
+                Content = new StackLayout
+                {
+                    Children = {
                     new Label {
                         Text = "Welcome to myLapTimer",
                         FontSize= Device.GetNamedSize(NamedSize.Large, typeof(Label)),
@@ -96,6 +98,7 @@ namespace B4.PE2.PilleS
                         Content = loggerLayout
                     }
                 }
+                }
             };
 
             // To make sure the page size has been calculated => handle the SizeChanged EventHander
@@ -108,7 +111,7 @@ namespace B4.PE2.PilleS
             string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
             string elapsedSplitTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}", tsSplit.Hours, tsSplit.Minutes, tsSplit.Seconds, tsSplit.Milliseconds / 10);
 
-            if (lapCounter==0)
+            if (lapCounter == 0)
             {
                 loggerLayout.Children.Add(new StackLayout
                 {
@@ -121,10 +124,10 @@ namespace B4.PE2.PilleS
                         }
                 });
                 loggerLayout.Children.Add(new BoxView
-                    {
-                        Color=Color.LightSalmon,
-                        HeightRequest = 1
-                    }
+                {
+                    Color = Color.LightSalmon,
+                    HeightRequest = 1
+                }
                 );
             }
             lapCounter++;
@@ -203,7 +206,7 @@ namespace B4.PE2.PilleS
                     ts = stopwatch.Elapsed;
                     tsSplit = splitTime.Elapsed;
                     lblClock.FormattedText = FormatLabel(ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
-                    lblSplit.Text= String.Format("{0:00}:{1:00}:{2:00}.{3:00}", tsSplit.Hours, tsSplit.Minutes, tsSplit.Seconds, tsSplit.Milliseconds / 10);
+                    lblSplit.Text = String.Format("{0:00}:{1:00}:{2:00}.{3:00}", tsSplit.Hours, tsSplit.Minutes, tsSplit.Seconds, tsSplit.Milliseconds / 10);
                     return true;
                 });
             }

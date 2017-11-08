@@ -1,18 +1,55 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:toolkit="clr-namespace:Xamarin.FormsBook.Toolkit;assembly=Xamarin.FormsBook.Toolkit"
              x:Class="B4.PE2.PilleS.FeedbackPage">
+    <!-- xmlns:sys... must appear in the attribute list for the root element, so that the XAML parser can resolve the name, sys:DateTime -->
     <ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness"
-                    Android="20"
-                    WinPhone="20" />
+                    iOS="10,30,10,10"
+                    Android="10"
+                    WinPhone="10" />
     </ContentPage.Padding>
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="CenterAndExpand">
-            <Label Text="Welcome to Feedback Page!"
-                TextColor="White" BackgroundColor="DarkBlue"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout.Resources>
+                    <ResourceDictionary>
+                        <Style TargetType="Entry">
+                            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                        </Style>
+                        <x:String x:Key="uncheckedRadio">&#x25CB;</x:String>
+                        <x:String x:Key="checkedRadio">&#x25C9;</x:String>
+                    </ResourceDictionary>
+                </StackLayout.Resources>
+                <Entry Placeholder="Naam" Keyboard="Default" />
+                <Entry Placeholder="Voornaam" Keyboard="Text" />
+                <Entry Placeholder="Email" Keyboard="Email" />
+                <Entry Placeholder="Telefoon" Keyboard="Telephone" />
+                <Label Text="Geboortedatum" FontSize="Medium" TextColor="DarkGray" HorizontalOptions="Start" />
+                <DatePicker VerticalOptions="CenterAndExpand" Date="{x:Static sys:DateTime.Now}">
+                    <DatePicker.Format>dd-MM-yyyy</DatePicker.Format>
+                    <DatePicker.MinimumDate>
+                        <sys:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Jan 1 2000</x:String>
+                            </x:Arguments>
+                        </sys:DateTime>
+                    </DatePicker.MinimumDate>
+                    <DatePicker.MaximumDate>
+                        <sys:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Dec 31 2050</x:String>
+                            </x:Arguments>
+                        </sys:DateTime>
+                    </DatePicker.MaximumDate>
+                </DatePicker>
+                <Label Text="Onderwerp" FontSize="Medium" TextColor="DarkGray" HorizontalOptions="Start" />
+                
+                <Label Text="Uw Bericht:" FontSize="Medium" TextColor="DarkGray" HorizontalOptions="Start" />
+                <Editor HeightRequest="100" Keyboard="Text" />
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
